@@ -1,0 +1,253 @@
+/* --- 您的原始 CSS 開始 --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: "Noto Serif TC", serif;
+  color: white;
+  overflow: hidden;
+}
+
+body {
+  /* 使用一個線上圖片作為背景 */
+  background-image: url("letter.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* 修改：為畫面切換增加淡出效果 */
+  transition: opacity 0.5s ease-out;
+}
+
+.content {
+  text-align: center;
+  max-width: 90%;
+  margin-bottom: 25vh;
+}
+
+.main-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 5px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7),
+    0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(173, 216, 230, 0.5);
+}
+
+.sub-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+}
+
+.text-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  position: absolute;
+  bottom: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: "Noto Serif TC", serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.copyright {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  body {
+    /* 電腦版可以使用更高解析度的圖片 */
+    background-image: url("banner.jpg");
+  }
+  .mobile-break {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    margin-bottom: 20vh;
+  }
+  .main-title {
+    font-size: 2.2rem;
+  }
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    bottom: 15vh;
+  }
+  button {
+    width: 100%;
+  }
+}
+/* --- 您的原始 CSS 結束 --- */
+
+/* --- 新增的 CSS --- */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s;
+  backdrop-filter: blur(5px);
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.page-content {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+  height: 50vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  font-family: "Noto Serif TC", serif;
+  font-size: 1rem;
+  color: white;
+  resize: none;
+  margin-bottom: 20px;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.page-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.letter-display {
+  width: 100%;
+  min-height: 50vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 25px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  white-space: pre-wrap; /* 保留換行 */
+  margin-bottom: 20px;
+  display: none; /* 預設隱藏 */
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  color: #e5e7eb; /* 淺灰色字體 */
+}
+
+/* 讀取信件前的動畫 */
+.bottle-animation {
+  height: 50vh;
+  display: none; /* 預設隱藏 */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.wave {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  position: absolute;
+  animation: wave-animation 2.5s ease-out infinite;
+}
+.wave:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.wave:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+#message-box {
+  color: #6ee7b7; /* 淺綠色 */
+  height: 20px;
+  margin-top: 15px;
+  transition: opacity 0.5s;
+}
