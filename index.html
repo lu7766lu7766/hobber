@@ -499,7 +499,6 @@
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js"
-      import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js"
       import {
         getFirestore,
         collection,
@@ -513,31 +512,22 @@
       } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js"
 
       document.addEventListener("DOMContentLoaded", async () => {
-        let db, auth, lettersCollectionRef
+        let db, lettersCollectionRef
         try {
           // TODO: Replace with your own Firebase project configuration.
           const firebaseConfig = {
-            apiKey: "AIzaSyAffV6Ck9l3WwU2eTjBLfe4l6O8_22crXw",
-            authDomain: "the-harbor-of-memories.firebaseapp.com",
-            projectId: "the-harbor-of-memories",
-            storageBucket: "the-harbor-of-memories.firebasestorage.app",
-            messagingSenderId: "537845379228",
-            appId: "1:537845379228:web:52687aa3f6779e0ea53d59",
-            measurementId: "G-VZHXEHTEZY",
+            apiKey: "AIzaSyAm_g03KU2c6dyHDvnnUX8J6-6A5vK-0ws",
+            authDomain: "hobber-55f37.firebaseapp.com",
+            projectId: "hobber-55f37",
+            storageBucket: "hobber-55f37.firebasestorage.app",
+            messagingSenderId: "676598050379",
+            appId: "1:676598050379:web:ca4a294c688207e77967ce",
           }
           const app = initializeApp(firebaseConfig)
 
           db = getFirestore(app)
-          auth = getAuth(app)
 
-          if (typeof __initial_auth_token !== "undefined" && __initial_auth_token) {
-            await signInWithCustomToken(auth, __initial_auth_token)
-          } else {
-            await signInAnonymously(auth)
-          }
-
-          const appId = typeof __app_id !== "undefined" ? __app_id : "default-app-id"
-          lettersCollectionRef = collection(db, `artifacts/${appId}/public/data/letters`)
+          lettersCollectionRef = collection(db, `letters`)
         } catch (error) {
           console.error("Firebase 初始化失敗:", error)
         }
@@ -651,7 +641,7 @@
                   contentToShow = pickedLetter.content
                   isSystemMessage = false
 
-                  await deleteDoc(doc(db, `artifacts/${appId}/public/data/letters`, pickedLetter.id))
+                  await deleteDoc(doc(db, `letters`, pickedLetter.id))
                 } else {
                   const randomIndex = Math.floor(Math.random() * noLetterMessages.length)
                   contentToShow = noLetterMessages[randomIndex]
